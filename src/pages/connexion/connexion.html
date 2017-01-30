@@ -1,0 +1,76 @@
+<!--
+Generated template for the Connexion page.
+
+See http://ionicframework.com/docs/v2/components/#navigation for more info on
+Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Connexion & Inscription</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div padding>
+    <ion-segment [(ngModel)]="tabLog">
+      <ion-segment-button value="Connexion">
+        Connexion
+      </ion-segment-button>
+      <ion-segment-button value="Inscription">
+        Inscription
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="tabLog">
+    <ion-list *ngSwitchCase="'Connexion'">
+        <ion-list inset>
+
+          <ion-item>
+            <ion-label>Nom d'utilisateur</ion-label>
+            <ion-input type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Mot de passe</ion-label>
+            <ion-input type="'password'"></ion-input>
+          </ion-item>
+
+          <button ion-button>Se connecter</button>
+
+        </ion-list>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'Inscription'">
+      <ion-list inset>
+
+        <ion-item>
+          <ion-label>Nom d'utilisateur:</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Mot de passe:</ion-label>
+          <ion-input type="password"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Je suis un commerçant</ion-label>
+          <ion-checkbox color="blue" checked="true"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Code commerçant:</ion-label>
+          <ion-input type="password"></ion-input>
+        </ion-item>
+
+        <button ion-button>S'inscrire</button>
+
+      </ion-list>
+    </ion-list>
+  </div>
+
+</ion-content>
