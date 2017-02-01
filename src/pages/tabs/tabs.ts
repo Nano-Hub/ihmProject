@@ -8,11 +8,10 @@ import { ProfilPage } from '../profil/profil';
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
-	
-	
-	mesBons: any = BonsPage;
-	marche: any = HomePage;
-	profil: any = ProfilPage;
+		
+	mesBons= BonsPage;
+	marche= HomePage;
+	profil= ProfilPage;
 
   constructor() {
 

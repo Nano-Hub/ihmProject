@@ -9,7 +9,8 @@ import { HomePage } from '../pages/home/home';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage = HomePage;
+	
+  rootPage = TabsPage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {
