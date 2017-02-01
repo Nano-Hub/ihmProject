@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { TabsPage } from '../tabs/tabs';
 
 /*
   Generated class for the Profil page.
@@ -12,7 +13,8 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'profil.html'
 })
 export class ProfilPage {
-tabProfil: string = "Profil";
+	rootPage=TabsPage;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
