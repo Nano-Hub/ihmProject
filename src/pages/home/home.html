@@ -21,31 +21,49 @@
 	</div>
 	<div [ngSwitch]="marche">
 		<ion-list *ngSwitchCase="'offreCommerce'">
-			<h3>Commerce</h3>
 			<ion-searchbar (ionInput)="getCoupons($event)"></ion-searchbar>
 			<ion-list>
 				<ion-item *ngFor="let coupon of coupons">
-						{{ coupon }}
+					<ion-thumbnail item-left>
+						<img src="assets/img/thumbnail-totoro.png">
+					</ion-thumbnail>
+					<h2>{{ coupon.boutique }}</h2>
+					<p>Reduction : {{ coupon.reduction }}</p>
+					<button ion-button outline icon-left item-right>
+						Je prends
+					</button>
 				</ion-item>
 			</ion-list>
 		</ion-list>
 
 		<ion-list *ngSwitchCase="'offreParticulier'">
-			<h3>Offre particulier</h3>
 			<ion-searchbar (ionInput)="getCoupons($event)"></ion-searchbar>
 			<ion-list>
 				<ion-item *ngFor="let coupon of coupons">
-						{{ coupon }}
+					<ion-thumbnail item-left>
+						<img src="assets/img/thumbnail-totoro.png">
+					</ion-thumbnail>
+					<h2>{{ coupon.boutique }}</h2>
+					<p>Reduction : {{ coupon.reduction }}</p>
+					<button ion-button outline icon-left item-right>
+						Je prends
+					</button>
 				</ion-item>
 			</ion-list>
 		</ion-list>
 	  
 		<ion-list *ngSwitchCase="'demandeParticulier'">
-			<h3>Demande particulier</h3>
 			<ion-searchbar (ionInput)="getCoupons($event)"></ion-searchbar>
 			<ion-list>
 				<ion-item *ngFor="let coupon of coupons">
-						{{ coupon }}
+					<ion-thumbnail item-left>
+						<img src="assets/img/thumbnail-totoro.png">
+					</ion-thumbnail>
+					<h2>{{ coupon.boutique }}</h2>
+					<p>Reduction : {{ coupon.reduction }}</p>
+					<button ion-button outline icon-left item-right>
+						Je reponds
+					</button>
 				</ion-item>
 			</ion-list>
 		</ion-list>

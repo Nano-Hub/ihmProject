@@ -22,9 +22,14 @@ export class BonsPage {
   
   initializeMesCoupons(){
 	this.mesCoupons=[
-		'Coupons 1',
-		'Coupons 5'
-	];
+	{
+		"boutique":'Pimki',
+		"reduction":'-5 €'
+	},
+	{
+		"boutique":'Sephora',
+		"reduction":'-10 €'
+	}];
 	
   }
   
@@ -38,13 +43,9 @@ export class BonsPage {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.mesCoupons = this.mesCoupons.filter((coupon) => {
-        return (coupon.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return (coupon.boutique.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
-  }
-  
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad BonsPage');
   }
 
 }

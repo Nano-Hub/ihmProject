@@ -22,29 +22,57 @@
 
 	<div [ngSwitch]="bons">
 		<ion-list *ngSwitchCase="'mesBons'">
-			<h3>COUCOU MES BONS</h3>
 			<ion-searchbar (ionInput)="getMesCoupons($event)"></ion-searchbar>
 			<ion-list>
 				<ion-item *ngFor="let coupon of mesCoupons">
-						{{ coupon }}
-						
+					<ion-thumbnail item-left>
+						<img src="assets/img/thumbnail-totoro.png">
+					</ion-thumbnail>
+					<h2>{{ coupon.boutique }}</h2>
+					<p>Reduction : {{ coupon.reduction }}</p>
+					<button ion-button color="secondary" outline icon-left item-right>
+						Utiliser
+					</button>
+					<button ion-button outline icon-left item-right>
+						Donner
+					</button>
 				</ion-item>
 			</ion-list>
 		</ion-list>
 
 		<ion-list *ngSwitchCase="'bonsDonnes'">
-			<h3>COUCOU BONS DONNES</h3>
 			<ion-searchbar (ionInput)="getMesCoupons($event)"></ion-searchbar>
 			<ion-list>
 				<ion-item *ngFor="let coupon of mesCoupons">
-						{{ coupon }}
-						
+					<ion-thumbnail item-left>
+						<img src="assets/img/thumbnail-totoro.png">
+					</ion-thumbnail>
+					<h2>{{ coupon.boutique }}</h2>
+					<p>Reduction : {{ coupon.reduction }}</p>
+					<button ion-button color="cool" outline icon-left item-right>
+						Récupérer
+					</button>
 				</ion-item>
 			</ion-list>
 		</ion-list>
 	  
 		<ion-list *ngSwitchCase="'demandeBon'">
-			<h3>COUCOU DEMANDER BONS</h3>
+			<br>
+			<br>
+			<br>
+			<div>
+				<h5>Je souhaite un bon de :</h5>
+				<br>
+				<ion-list>
+
+					<ion-item>
+						<ion-input type="text" placeholder="Nom de la Boutique"></ion-input>
+					</ion-item>
+
+				</ion-list>
+				<br>
+				<button ion-button color="primary">Demander</button>
+			</div>
 		</ion-list>
 		
 	</div>

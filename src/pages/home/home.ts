@@ -18,12 +18,26 @@ export class HomePage {
 	
 	initializeCoupons(){
 	this.coupons=[
-		'Coupons 1',
-		'Coupons 2',
-		'Coupons 3',
-		'Coupons 4',
-		'Coupons 5'
-		];
+	{
+		"boutique":'Pimki',
+		"reduction":'-5 €'
+	},
+	{
+		"boutique":'Celio',
+		"reduction":'-15 €'
+	},
+	{
+		"boutique":'Carrefour',
+		"reduction":'-30 €'
+	},
+	{
+		"boutique":'Jules',
+		"reduction":'-15 €'
+	},
+	{
+		"boutique":'Sephora',
+		"reduction":'-10 €'
+	}];
   }
   
   getCoupons(value) {
@@ -36,7 +50,7 @@ export class HomePage {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.coupons = this.coupons.filter((coupon) => {
-        return (coupon.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return (coupon.boutique.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
   }
