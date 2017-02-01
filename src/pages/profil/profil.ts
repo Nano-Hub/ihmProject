@@ -14,6 +14,7 @@ import { TabsPage } from '../tabs/tabs';
 })
 export class ProfilPage {
 
+	tabProfil: string = "Profil";
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
 }
