@@ -1,7 +1,39 @@
 <ion-header>
+
+  <ion-navbar>
+    <ion-title>Profil</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div padding>
+    <ion-segment [(ngModel)]="tabProfil">
+      <ion-segment-button value="Profil">
+        Profil
+      </ion-segment-button>
+      <ion-segment-button value="Notification">
+        Notification
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
 </ion-header>
 
 
 <ion-content>
 
+
+  <div [ngSwitch]="tabProfil">
+    <ion-list *ngSwitchCase="'Profil'">
+      <p> Bonjour Jean-marc </p>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'Notification'">
+      <ion-list inset>
+        <p>Notification 1</p>
+      </ion-list>
+    </ion-list>
+  </div>
 </ion-content>
