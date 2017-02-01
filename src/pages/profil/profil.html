@@ -3,7 +3,7 @@
  <ion-navbar>
     <ion-title>Profil</ion-title>
  </ion-navbar>
-  
+
 </ion-header>
 
 
@@ -21,12 +21,33 @@
 
   <div [ngSwitch]="tabProfil">
     <ion-list *ngSwitchCase="'Profil'">
-      <p> Bonjour Jean-marc </p>
+        <p> Bonjour Jean-marc </p>
+          <button ion-button>Se déconnecter</button>
+          <button ion-button>Supprimer mon compte</button>
     </ion-list>
-
     <ion-list *ngSwitchCase="'Notification'">
       <ion-list inset>
-        <p>Notification 1</p>
+        <ion-item class="center item-color-back">
+          <ion-icon ios="ios-done-all" md="md-done-all" class="green-icon"></ion-icon>
+            Coupon donné
+        </ion-item>
+        <ion-item  class="center item-color-back">
+          <ion-icon ios="ios-checkmark" md="md-checkmark" class="yellow-icon"></ion-icon>
+            Coupon demandé
+        </ion-item>
+        <ion-item  class="center item-color-back">
+           <ion-icon ios="ios-alarm" md="md-alarm" class="yellow-icon"></ion-icon>
+            Coupon bientot expiré
+        </ion-item>
+        <ion-item  class="center item-color-back">
+           <ion-icon ios="ios-cart" md="md-cart" class="green-icon"></ion-icon>
+            Coupon utilisé
+        </ion-item>
+        <ion-item  class="center item-color-back">
+           <ion-icon ios="ios-trash" md="md-trash" class="red-icon"></ion-icon>
+            Coupon expiré
+        </ion-item>
+
       </ion-list>
     </ion-list>
   </div>
