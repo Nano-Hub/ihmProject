@@ -1,18 +1,21 @@
 
 <ion-header>
+	<ion-navbar>
+		<ion-title>Bons</ion-title>
+	</ion-navbar>
 </ion-header>
 
 <ion-content padding>
 	<div padding>
 	  <ion-segment [(ngModel)]="bons">
 		<ion-segment-button value="mesBons">
-		  Mes Bons
+		  Les miens
 		</ion-segment-button>
 		<ion-segment-button value="bonsDonnes">
-		  Mes bons proposés
+		  Proposés
 		</ion-segment-button>
 		<ion-segment-button value="demandeBon">
-		  Demander des bons
+		  Demander
 		</ion-segment-button>
 	  </ion-segment>
 	</div>

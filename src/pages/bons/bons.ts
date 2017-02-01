@@ -15,7 +15,6 @@ import { TabsPage } from '../tabs/tabs';
 export class BonsPage {
 	bons: string = "mesBons";
 	mesCoupons;
-	rootPage=TabsPage;
 	
   constructor(public navCtrl: NavController) {
 	this.initializeMesCoupons();

@@ -13,7 +13,6 @@ import { TabsPage } from '../tabs/tabs';
   templateUrl: 'profil.html'
 })
 export class ProfilPage {
-	rootPage=TabsPage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 

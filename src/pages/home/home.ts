@@ -11,7 +11,6 @@ export class HomePage {
 	
 	marche: string = "offreCommerce";
 	coupons;
-	rootPage=TabsPage;
 	
 	constructor(public navCtrl: NavController) {
 		this.initializeCoupons();
