@@ -6,6 +6,7 @@
 </ion-header>
 
 <ion-content padding>
+	<button ion-button [navPush]="admin">Admin</button>
   <div padding>
 	  <ion-segment [(ngModel)]="marche">
 		<ion-segment-button value="offreCommerce">
@@ -20,7 +21,6 @@
 	  </ion-segment>
 	</div>
 	<div [ngSwitch]="marche">
-		<!--<button ion-item (click)="onButton()">Admin</button>-->
 		<ion-list *ngSwitchCase="'offreCommerce'">
 			<ion-searchbar (ionInput)="getCoupons($event)"></ion-searchbar>
 			<ion-list>

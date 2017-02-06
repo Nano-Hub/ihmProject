@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
-import { TabsPage } from '../tabs/tabs';
+//import { TabsPage } from '../tabs/tabs';
 import { AdminPage } from '../admin/admin';
 
 @Component({
@@ -12,9 +12,9 @@ export class HomePage {
 	
 	marche: string = "offreCommerce";
 	coupons;
-	nav:NavController;
+	admin;
 	constructor(public navCtrl: NavController) {
-		this.nav=navCtrl; 
+		this.admin=AdminPage;
 		this.initializeCoupons();
 	}
 	
@@ -55,10 +55,6 @@ export class HomePage {
         return (coupon.boutique.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
-  }
-  
-  onButton(){
-	this.nav.setRoot(AdminPage);
   }
 
 }

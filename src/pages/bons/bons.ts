@@ -15,9 +15,16 @@ import { TabsPage } from '../tabs/tabs';
 export class BonsPage {
 	bons: string = "mesBons";
 	mesCoupons;
+	leCoupon;
+	mesCouponsDemandes;
+		
 	
   constructor(public navCtrl: NavController) {
+	this.leCoupon={
+		"boutique":''
+	};
 	this.initializeMesCoupons();
+	this.initializeMesCouponsDemandes();
   }
   
   initializeMesCoupons(){
@@ -29,6 +36,17 @@ export class BonsPage {
 	{
 		"boutique":'Sephora',
 		"reduction":'-10 €'
+	}];
+	
+  }
+  
+  initializeMesCouponsDemandes(){
+	this.mesCouponsDemandes=[
+	{
+		"boutique":'Pimki'
+	},
+	{
+		"boutique":'Sephora'
 	}];
 	
   }
@@ -46,6 +64,10 @@ export class BonsPage {
         return (coupon.boutique.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
+  }
+  
+  oui(){
+	this.mesCouponsDemandes.push(leCoupon);
   }
 
 }

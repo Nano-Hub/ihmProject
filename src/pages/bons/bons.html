@@ -66,12 +66,25 @@
 				<ion-list>
 
 					<ion-item>
-						<ion-input type="text" placeholder="Nom de la Boutique"></ion-input>
+						<ion-input type="text" placeholder="Nom de la Boutique" [(ngModel)]="leCoupon.boutique" name="coupcoup"></ion-input>
 					</ion-item>
 
 				</ion-list>
 				<br>
-				<button ion-button color="primary">Demander</button>
+				<button ion-button (click)="oui()" color="primary">Demander</button>
+			</div>
+			<br>
+			<br>
+			<div>
+				<h5>JMes Coupons demandés </h5>
+				<ion-list>
+					<ion-item *ngFor="let couponD of mesCouponsDemandes">
+						<ion-thumbnail item-left>
+							<img src="assets/img/thumbnail-totoro.png">
+						</ion-thumbnail>
+						<h2>{{ couponD.boutique }}</h2>
+					</ion-item>
+				</ion-list>
 			</div>
 		</ion-list>
 		
