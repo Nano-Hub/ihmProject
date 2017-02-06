@@ -66,8 +66,8 @@ export class BonsPage {
     }
   }
   
-  oui(){
-	this.mesCouponsDemandes.push(leCoupon);
+  demander(){
+	this.mesCouponsDemandes.push(this.leCoupon);
   }
 
 }
