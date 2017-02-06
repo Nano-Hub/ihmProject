@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
+import { CouponPage } from '../coupon/coupon';
 
 /*
   Generated class for the Bons page.
@@ -17,14 +18,16 @@ export class BonsPage {
 	mesCoupons;
 	leCoupon;
 	mesCouponsDemandes;
+	mesCouponsProposes;
 		
 	
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
 	this.leCoupon={
 		"boutique":''
 	};
 	this.initializeMesCoupons();
 	this.initializeMesCouponsDemandes();
+	this.initializeMesCouponsProposes();
   }
   
   initializeMesCoupons(){
@@ -43,10 +46,23 @@ export class BonsPage {
   initializeMesCouponsDemandes(){
 	this.mesCouponsDemandes=[
 	{
-		"boutique":'Pimki'
+		"boutique":'Chanel'
 	},
 	{
-		"boutique":'Sephora'
+		"boutique":'Dior'
+	}];
+	
+  }
+  
+  initializeMesCouponsProposes(){
+	this.mesCouponsProposes=[
+	{
+		"boutique":'BricoRama',
+		"reduction":'-8 €'
+	},
+	{
+		"boutique":'Micromania',
+		"reduction":'-12 €'
 	}];
 	
   }
@@ -66,8 +82,41 @@ export class BonsPage {
     }
   }
   
+  getMesCouponsProposes(value) {
+    // Reset items back to all of the items
+    this.initializeMesCouponsProposes();
+
+    // set val to the value of the ev target
+    var val = value.target.value;
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.mesCouponsProposes = this.mesCouponsProposes.filter((coupon) => {
+        return (coupon.boutique.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
+  }
+  
   demander(){
 	this.mesCouponsDemandes.push(this.leCoupon);
+  }
+  
+  use(value){
+	  this.navCtrl.push(CouponPage,{
+            boutique: value.boutique,
+			reduction: value.reduction
+          });
+  }
+  
+  donner(value){
+	//console.log(value.boutique);
+	//this.mesCoupons = this.mesCoupons.splice(this.mesCoupons.indexOf(value), 1);
+	//console.log(value.boutique);
+	//this.mesCouponsProposes.push(value);
+  }
+  
+  recuperer(){
+  
   }
 
 }

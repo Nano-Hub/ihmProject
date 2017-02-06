@@ -30,10 +30,10 @@
 					</ion-thumbnail>
 					<h2>{{ coupon.boutique }}</h2>
 					<p>Reduction : {{ coupon.reduction }}</p>
-					<button ion-button color="secondary" outline icon-left item-right>
+					<button ion-button (click)="use(coupon)" color="secondary" outline icon-left item-right>
 						Utiliser
 					</button>
-					<button ion-button outline icon-left item-right>
+					<button ion-button (click)="donner()" outline icon-left item-right>
 						Donner
 					</button>
 				</ion-item>
@@ -41,15 +41,15 @@
 		</ion-list>
 
 		<ion-list *ngSwitchCase="'bonsDonnes'">
-			<ion-searchbar (ionInput)="getMesCoupons($event)"></ion-searchbar>
+			<ion-searchbar (ionInput)="getMesCouponsProposes($event)"></ion-searchbar>
 			<ion-list>
-				<ion-item *ngFor="let coupon of mesCoupons">
+				<ion-item *ngFor="let coupon of mesCouponsProposes">
 					<ion-thumbnail item-left>
 						<img src="assets/img/thumbnail-totoro.png">
 					</ion-thumbnail>
 					<h2>{{ coupon.boutique }}</h2>
 					<p>Reduction : {{ coupon.reduction }}</p>
-					<button ion-button color="cool" outline icon-left item-right>
+					<button ion-button (click)="recuperer()" color="cool" outline icon-left item-right>
 						Récupérer
 					</button>
 				</ion-item>
@@ -76,7 +76,7 @@
 			<br>
 			<br>
 			<div>
-				<h5>JMes Coupons demandés </h5>
+				<h4>Mes Coupons demandés </h4>
 				<ion-list>
 					<ion-item *ngFor="let couponD of mesCouponsDemandes">
 						<ion-thumbnail item-left>
