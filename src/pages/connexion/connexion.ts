@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams,  AlertController, LoadingController, Loading } from 'ionic-angular';
 import { LoginService } from '../../service/login-service';
 import { HomePage } from '../home/home';
+import { TabsPage } from '../tabs/tabs';
 
 /*
   Generated class for the Connexion page.
@@ -32,7 +33,7 @@ export class ConnexionPage {
       console.log("if allowed");
         setTimeout(() => {
         this.loading.dismiss();
-        this.navCtrl.setRoot(HomePage)
+        this.navCtrl.setRoot(TabsPage)
         });
       } else {
         this.showError("Accès refusé !");

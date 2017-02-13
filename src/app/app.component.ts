@@ -11,7 +11,7 @@ import { ConnexionPage } from '../pages/connexion/connexion';
 })
 export class MyApp {
 	
-  rootPage = ConnexionPage;
+  rootPage = TabsPage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {
