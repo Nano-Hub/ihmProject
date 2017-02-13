@@ -21,15 +21,15 @@ export class LoginService {
       return Observable.throw("Veuillez entrer votre nom d'utilisateur et votre mot de passe");
     } else {
       return Observable.create(observer => {
-        let access = (authentification.mdp === "pass" && authentification.login === "email");
-        this.currentUser = new User('Jacques', 'azerty');
-        observer.next(access);
+        //let access = (authentification.mdp === "pass" && authentification.login === "email");
+        //this.currentUser = new User('Jacques', 'azerty');
+        observer.next(true);
         observer.complete();
       });
     }
   }
  
-  public register(authentication) {
+  public register(authentification) {
     if (authentification.login === null || authentification.mdp === null) {
       return Observable.throw("Veuillez entrer votre nom d'utilisateur et votre mot de passe");
     } else {

@@ -11,6 +11,7 @@ import { BonsPage } from '../pages/bons/bons';
 import { AdminPage } from '../pages/admin/admin';
 import { CouponPage } from '../pages/coupon/coupon';
 import { LoginService } from '../service/login-service';
+import { GerantPagePage } from '../pages/gerant-page/gerant-page';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { LoginService } from '../service/login-service';
     ProfilPage,
     BonsPage,
 	AdminPage,
-	CouponPage
+	CouponPage,
+	GerantPagePage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -40,7 +42,8 @@ import { LoginService } from '../service/login-service';
     BonsPage,
     ProfilPage,
 	AdminPage,
-	CouponPage
+	CouponPage,
+	GerantPagePage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, LoginService]
 })
