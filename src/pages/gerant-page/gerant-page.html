@@ -33,9 +33,11 @@
 					<ion-thumbnail item-left>
 						<img src="assets/img/thumbnail-totoro.png">
 					</ion-thumbnail>
-					<h2>{{ coupon.boutique }}</h2>
+					<h2>{{ coupon.nom }}</h2>
 					<p>Reduction : {{ coupon.reduction }}</p>
-					<button ion-button (click)="delete(coupon)" color="danger" outline icon-left item-right>
+					<p>Date limite : {{coupon.delai}}</p>
+					<p>Quantité limite : {{coupon.quantite}}</p>
+					<button ion-button (click)="deleteCoupon(coupon)" color="danger" outline icon-left item-right>
 						Supprimer
 					</button>
 				</ion-item>
@@ -47,22 +49,28 @@
 				<form (ngSubmit)="createBon()" #registerForm="ngForm">
 				  <ion-row>
 					<ion-col>
-					  <ion-list inset>
-						
-						<ion-item>
-							<ion-label>Réduction</ion-label>
-							<ion-input type="text" name="reduction" [(ngModel)]="bon.reduction" required></ion-input>
-						</ion-item>
-						
-						<ion-item>
-							<ion-label>Date limite:</ion-label>
-						</ion-item>
-						
-						<ion-item>
-							<ion-label>Quantité limite:</ion-label>
-						</ion-item>
-						
-					  </ion-list>
+						<ion-list inset>
+							<ion-item>
+								<ion-label stacked>Réduction</ion-label>
+							</ion-item>
+							<ion-item>
+								<ion-input type="text" name="reduction" placeholder="ex : -5€, -20%..."[(ngModel)]="bon.reduction" required></ion-input>
+							</ion-item>
+							<ion-item>
+								<ion-label stacked>Quantité limite:</ion-label>
+								<ion-toggle name="toggle2" [(ngModel)]="quantiteToggle"></ion-toggle>
+							</ion-item>
+							<ion-item>
+								<ion-input type="text" name="quantite" placeholder="ex : 1, 5, 12..." [(ngModel)]="bon.quantite" [disabled]="!quantiteToggle"></ion-input>
+							</ion-item>
+							<ion-item>
+								<ion-label stacked>Date limite:</ion-label>
+								<ion-toggle name="toggle1" [(ngModel)]="dateToggle"></ion-toggle>
+							</ion-item>
+							<ion-item>
+								<ion-datetime displayFormat="DD MMM YYYY" name="date" [(ngModel)]="bon.delai" [disabled]="!dateToggle"></ion-datetime>
+							</ion-item>
+						</ion-list>
 					</ion-col>
 				  </ion-row>
 				  

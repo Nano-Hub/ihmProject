@@ -15,7 +15,9 @@ export class GerantPagePage {
 	
 	bonsGerant: string ="nosBons";
 	nosCoupons;
-	bon={boutique:'',reduction:''};
+	bon={nom:'',reduction:'',delai:'',quantite:''};
+	dateLimite;
+	quantiteLimite;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 	  this.initializeNosCoupons();
@@ -24,20 +26,28 @@ export class GerantPagePage {
   initializeNosCoupons(){
 	this.nosCoupons=[
 	{
-		"boutique":'Pimki',
-		"reduction":'-5 €'
+		"nom":'Pimki',
+		"reduction":'-5 €',
+		"delai":'',
+		"quantite":''
 	},
 	{
-		"boutique":'Pimki',
-		"reduction":'-15 €'
+		"nom":'Pimki',
+		"reduction":'-15 €',
+		"delai":'',
+		"quantite":''
 	},
 	{
-		"boutique":'Pimki',
-		"reduction":'-30 €'
+		"nom":'Pimki',
+		"reduction":'-30 €',
+		"delai":'',
+		"quantite":''
 	},
 	{
-		"boutique":'Pimki',
-		"reduction":'-10 €'
+		"nom":'Pimki',
+		"reduction":'-10 €',
+		"delai":'',
+		"quantite":''
 	}];
   }
   
@@ -51,15 +61,19 @@ export class GerantPagePage {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.nosCoupons = this.nosCoupons.filter((coupon) => {
-        return (coupon.boutique.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return (coupon.nom.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
   }
   
   public createBon(){
-	this.bon.boutique='Pimki';
+	this.bon.nom='leNomdelaBoutiqueEnQuestion';
 	this.nosCoupons.push(this.bon);
-  }
+}
+
+	deleteCoupon(coupon){
+		//delete le coupon
+	}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad GerantPagePage');
