@@ -28,7 +28,7 @@
 					<ion-thumbnail item-left>
 						<img src="assets/img/thumbnail-totoro.png">
 					</ion-thumbnail>
-					<h2>{{ coupon.boutique }}</h2>
+					<h2>{{ coupon.nom }}</h2>
 					<p>Reduction : {{ coupon.reduction }}</p>
 					<button ion-button (click)="use(coupon)" color="secondary" outline icon-left item-right>
 						Utiliser
@@ -47,15 +47,15 @@
 					<ion-thumbnail item-left>
 						<img src="assets/img/thumbnail-totoro.png">
 					</ion-thumbnail>
-					<h2>{{ coupon.boutique }}</h2>
+					<h2>{{ coupon.nom }}</h2>
 					<p>Reduction : {{ coupon.reduction }}</p>
-					<button ion-button (click)="recuperer()" color="cool" outline icon-left item-right>
+					<button ion-button (click)="recuperer(coupon)" color="cool" outline icon-left item-right>
 						Récupérer
 					</button>
 				</ion-item>
 			</ion-list>
 		</ion-list>
-	  
+
 		<ion-list *ngSwitchCase="'demandeBon'">
 			<br>
 			<br>
@@ -82,11 +82,11 @@
 						<ion-thumbnail item-left>
 							<img src="assets/img/thumbnail-totoro.png">
 						</ion-thumbnail>
-						<h2>{{ couponD.boutique }}</h2>
+						<h2>{{ couponD.nom }}</h2>
 					</ion-item>
 				</ion-list>
 			</div>
 		</ion-list>
-		
+
 	</div>
 </ion-content>
