@@ -14,6 +14,7 @@ import { LoginService } from '../service/login-service';
 import { Storage } from '@ionic/storage';
 import { Http, Response, Headers, RequestOptions } from '@angular2/http';
 import { GerantPagePage } from '../pages/gerant-page/gerant-page';
+import { LocalStorage } from 'ionic-angular';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,6 @@ import { GerantPagePage } from '../pages/gerant-page/gerant-page';
 	CouponPage,
 	GerantPagePage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, LoginService, Storage]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, LoginService, Storage, LocalStorage]
 })
 export class AppModule {}

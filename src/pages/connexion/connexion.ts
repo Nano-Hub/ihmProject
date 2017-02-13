@@ -24,6 +24,7 @@ export class ConnexionPage {
 
   constructor(private navCtrl: NavController, private service:LoginService, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private navParams: NavParams)
   {
+	  console.log("oui");
   }
 
   public login() {
