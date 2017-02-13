@@ -18,7 +18,7 @@ export class User {
 export class LoginService {
   currentUser: User;
 
-  constructor(private http: Http,private storage: Storage) {
+  constructor(private http: Http) {
 
   }
 
@@ -31,13 +31,12 @@ export class LoginService {
         this.http.post('http://localhost:3000/login', param) .map((res:any) => res.json()).subscribe(
                 (data) =>
                 {
-                  this.storage.set('token', data.token);
+                  localStorage.setItem('token',data.token);
                   observer.next(true);
                   observer.complete();
                   },
                 (err) => console.log(err)
                 );
-                this.storage.get('token').then((val) => {console.log('token:', val)});
       });
     }
   }

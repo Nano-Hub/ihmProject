@@ -11,10 +11,8 @@ import { BonsPage } from '../pages/bons/bons';
 import { AdminPage } from '../pages/admin/admin';
 import { CouponPage } from '../pages/coupon/coupon';
 import { LoginService } from '../service/login-service';
-import { Storage } from '@ionic/storage';
 import { Http, Response, Headers, RequestOptions } from '@angular2/http';
 import { GerantPagePage } from '../pages/gerant-page/gerant-page';
-import { LocalStorage } from 'ionic-angular';
 
 @NgModule({
   declarations: [
@@ -47,6 +45,6 @@ import { LocalStorage } from 'ionic-angular';
 	CouponPage,
 	GerantPagePage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, LoginService, Storage, LocalStorage]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, LoginService]
 })
 export class AppModule {}

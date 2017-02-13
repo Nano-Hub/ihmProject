@@ -3,7 +3,6 @@ import { NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { CouponPage } from '../coupon/coupon';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { LocalStorage } from 'ionic-angular';
 
 /*
 Generated class for the Bons page.
@@ -23,7 +22,7 @@ export class BonsPage {
   mesCouponsProposes;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, private storage: LocalStorage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http) {
     this.leCoupon={
       "boutique":''
     };
@@ -32,11 +31,8 @@ export class BonsPage {
     this.initializeMesCouponsProposes();
   }
 
-  initializeMesCoupons(){
-    var token;
-     //this.local = new Storage(LocalStorage);
-    this.storage.get('token').then((val) => {token = val;})
-    let param = {"token": token};
+  initializeMesCoupons(){    
+    let param = {"token": localStorage.getItem('token')};
     console.log(param);
     this.http.get('http://localhost:3000/getMyCoupons', param) .map((res:any) => res.json()).subscribe(
       (data) =>
