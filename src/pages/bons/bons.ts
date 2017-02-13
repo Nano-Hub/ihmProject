@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { CouponPage } from '../coupon/coupon';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Storage } from '@ionic/storage';
 
 /*
   Generated class for the Bons page.
@@ -19,9 +21,9 @@ export class BonsPage {
 	leCoupon;
 	mesCouponsDemandes;
 	mesCouponsProposes;
-		
-	
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http, private storage: Storage) {
 	this.leCoupon={
 		"boutique":''
 	};
@@ -29,8 +31,16 @@ export class BonsPage {
 	this.initializeMesCouponsDemandes();
 	this.initializeMesCouponsProposes();
   }
-  
+
   initializeMesCoupons(){
+  let param = {"token": this.storage.get('token').then((val) => {val})};
+          this.http.get('http://localhost:3000/getMyCoupons', param) .map((res:any) => res.json()).subscribe(
+                  (data) =>
+                  {
+                      console.log(data);
+                    },
+                  (err) => console.log(err)
+                  );
 	this.mesCoupons=[
 	{
 		"boutique":'Pimki',
@@ -40,9 +50,9 @@ export class BonsPage {
 		"boutique":'Sephora',
 		"reduction":'-10 €'
 	}];
-	
+
   }
-  
+
   initializeMesCouponsDemandes(){
 	this.mesCouponsDemandes=[
 	{
@@ -51,9 +61,9 @@ export class BonsPage {
 	{
 		"boutique":'Dior'
 	}];
-	
+
   }
-  
+
   initializeMesCouponsProposes(){
 	this.mesCouponsProposes=[
 	{
@@ -64,9 +74,9 @@ export class BonsPage {
 		"boutique":'Micromania',
 		"reduction":'-12 €'
 	}];
-	
+
   }
-  
+
   getMesCoupons(value) {
     // Reset items back to all of the items
     this.initializeMesCoupons();
@@ -81,7 +91,7 @@ export class BonsPage {
       })
     }
   }
-  
+
   getMesCouponsProposes(value) {
     // Reset items back to all of the items
     this.initializeMesCouponsProposes();
@@ -96,27 +106,27 @@ export class BonsPage {
       })
     }
   }
-  
+
   demander(){
 	this.mesCouponsDemandes.push(this.leCoupon);
   }
-  
+
   use(value){
 	  this.navCtrl.push(CouponPage,{
             boutique: value.boutique,
 			reduction: value.reduction
           });
   }
-  
+
   donner(value){
 	//console.log(value.boutique);
 	//this.mesCoupons = this.mesCoupons.splice(this.mesCoupons.indexOf(value), 1);
 	//console.log(value.boutique);
 	//this.mesCouponsProposes.push(value);
   }
-  
+
   recuperer(){
-  
+
   }
 
 }
