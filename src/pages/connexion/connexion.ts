@@ -29,6 +29,7 @@ export class ConnexionPage {
     this.showLoading()
     this.service.connect(this.userlogin).subscribe(allowed => {
       if (allowed) {
+      console.log("if allowed");
         setTimeout(() => {
         this.loading.dismiss();
         this.navCtrl.setRoot(HomePage)
@@ -41,19 +42,19 @@ export class ConnexionPage {
       this.showError(error);
     });
   }
-  
+
   showLoading() {
     this.loading = this.loadingCtrl.create({
       content: 'Veuillez patienter...'
     });
     this.loading.present();
   }
- 
+
   showError(text) {
     setTimeout(() => {
       this.loading.dismiss();
     });
- 
+
     let alert = this.alertCtrl.create({
       title: 'Fail',
       subTitle: text,
@@ -61,7 +62,7 @@ export class ConnexionPage {
     });
     alert.present(prompt);
   }
-  
+
   public register() {
     this.service.register(this.userRegister).subscribe(success => {
       if (success) {
@@ -75,7 +76,7 @@ export class ConnexionPage {
       this.showPopup("Error", error);
     });
   }
- 
+
   showPopup(title, text) {
     let alert = this.alertCtrl.create({
       title: title,
@@ -93,7 +94,7 @@ export class ConnexionPage {
     });
     alert.present();
   }
-  
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad ConnexionPage');
   }
