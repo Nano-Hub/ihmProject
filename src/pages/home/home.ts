@@ -4,6 +4,7 @@ import { NavController } from 'ionic-angular';
 //import { TabsPage } from '../tabs/tabs';
 import { AdminPage } from '../admin/admin';
 import { ConnexionPage } from '../connexion/connexion';
+import { GerantPagePage } from '../gerant-page/gerant-page';
 
 @Component({
   selector: 'page-home',
@@ -15,9 +16,11 @@ export class HomePage {
 	coupons;
 	admin;
 	connect;
+	gerant;
 	constructor(public navCtrl: NavController) {
 		this.admin=AdminPage;
 		this.connect=ConnexionPage;
+		this.gerant=GerantPagePage;
 		this.initializeCoupons();
 	}
 	
