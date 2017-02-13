@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams,  AlertController, LoadingController, Loading } from 'ionic-angular';
+import { LoginService } from '../../service/login-service';
+import { HomePage } from '../home/home';
 
 /*
   Generated class for the Connexion page.
@@ -13,13 +15,85 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ConnexionPage {
   tabLog: string = "Connexion";
+  loading: Loading;
+  createSuccess = false;
+  userlogin = {login: '', mdp: ''};
+  userRegister = {login: '', mdp: ''};
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams)
+  constructor(private navCtrl: NavController, private service:LoginService, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private navParams: NavParams)
   {
-
   }
 
+  public login() {
+    this.showLoading()
+    this.service.connect(this.userlogin).subscribe(allowed => {
+      if (allowed) {
+        setTimeout(() => {
+        this.loading.dismiss();
+        this.navCtrl.setRoot(HomePage)
+        });
+      } else {
+        this.showError("Accès refusé !");
+      }
+    },
+    error => {
+      this.showError(error);
+    });
+  }
+  
+  showLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Veuillez patienter...'
+    });
+    this.loading.present();
+  }
+ 
+  showError(text) {
+    setTimeout(() => {
+      this.loading.dismiss();
+    });
+ 
+    let alert = this.alertCtrl.create({
+      title: 'Fail',
+      subTitle: text,
+      buttons: ['OK']
+    });
+    alert.present(prompt);
+  }
+  
+  public register() {
+    this.service.register(this.userRegister).subscribe(success => {
+      if (success) {
+        this.createSuccess = true;
+          this.showPopup("Success", "Account created. Veuillez vous connecter");
+      } else {
+        this.showPopup("Error", "Problem creating account.");
+      }
+    },
+    error => {
+      this.showPopup("Error", error);
+    });
+  }
+ 
+  showPopup(title, text) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: text,
+      buttons: [
+       {
+         text: 'OK',
+         handler: data => {
+           if (this.createSuccess) {
+             this.navCtrl.popToRoot();
+           }
+         }
+       }
+     ]
+    });
+    alert.present();
+  }
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad ConnexionPage');
   }

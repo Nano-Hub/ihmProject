@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 //import { TabsPage } from '../tabs/tabs';
 import { AdminPage } from '../admin/admin';
+import { ConnexionPage } from '../connexion/connexion';
 
 @Component({
   selector: 'page-home',
@@ -13,8 +14,10 @@ export class HomePage {
 	marche: string = "offreCommerce";
 	coupons;
 	admin;
+	connect;
 	constructor(public navCtrl: NavController) {
 		this.admin=AdminPage;
+		this.connect=ConnexionPage;
 		this.initializeCoupons();
 	}
 	

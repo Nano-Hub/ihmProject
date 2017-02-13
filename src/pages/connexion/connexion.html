@@ -27,50 +27,76 @@ Ionic pages and navigation.
 
   <div [ngSwitch]="tabLog">
     <ion-list *ngSwitchCase="'Connexion'">
-        <ion-list inset>
-
-          <ion-item>
-            <ion-label>Nom d'utilisateur</ion-label>
-            <ion-input type="text"></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label>Mot de passe</ion-label>
-            <ion-input type="'password'"></ion-input>
-          </ion-item>
-
-          <button ion-button>Se connecter</button>
-
-        </ion-list>
+        <div>
+			<form (ngSubmit)="login()" #registerForm="ngForm">
+			  <ion-row>
+				<ion-col>
+				  <ion-list inset>
+					
+					<ion-item>
+						<ion-label>Nom d'utilisateur:</ion-label>
+					  <ion-input type="text" name="username" [(ngModel)]="userlogin.login" required></ion-input>
+					</ion-item>
+					
+					<ion-item>
+						<ion-label>Mot de passe:</ion-label>
+					  <ion-input type="password" name="password" [(ngModel)]="userlogin.mdp" required></ion-input>
+					</ion-item>
+					
+				  </ion-list>
+				</ion-col>
+			  </ion-row>
+			  
+			  <ion-row>
+				<ion-col>
+				  <button ion-button type="submit" [disabled]="!registerForm.form.valid">Se connecter</button>
+				</ion-col>
+			  </ion-row>
+			  
+			</form>
+		</div>
     </ion-list>
 
     <ion-list *ngSwitchCase="'Inscription'">
-      <ion-list inset>
+      <div>
+			<form (ngSubmit)="login()" #registerForm="ngForm">
+			  <ion-row>
+				<ion-col>
+				  <ion-list inset>
+					
+					<ion-item>
+						<ion-label>Nom d'utilisateur:</ion-label>
+					  <ion-input type="text" name="username" [(ngModel)]="userRegister.login" required></ion-input>
+					</ion-item>
+					
+					<ion-item>
+						<ion-label>Mot de passe:</ion-label>
+					  <ion-input type="password" name="password" [(ngModel)]="userRegister.mdp" required></ion-input>
+					</ion-item>
+					
+					<ion-item>
+					  <ion-label>Je suis un commerçant</ion-label>
+					  <ion-checkbox color="blue" checked="true"></ion-checkbox>
+					</ion-item>
 
-        <ion-item>
-          <ion-label>Nom d'utilisateur:</ion-label>
-          <ion-input type="text"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>Mot de passe:</ion-label>
-          <ion-input type="password"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>Je suis un commerçant</ion-label>
-          <ion-checkbox color="blue" checked="true"></ion-checkbox>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>Code commerçant:</ion-label>
-          <ion-input type="password"></ion-input>
-        </ion-item>
-
-        <button ion-button>S'inscrire</button>
-
-      </ion-list>
-    </ion-list>
+					<ion-item>
+					  <ion-label>Code commerçant:</ion-label>
+					  <ion-input type="password"></ion-input>
+					</ion-item>
+					
+				  </ion-list>
+				</ion-col>
+			  </ion-row>
+			  
+			  <ion-row>
+				<ion-col>
+				  <button ion-button type="submit" [disabled]="!registerForm.form.valid">S'inscrire</button>
+				</ion-col>
+			  </ion-row>
+			  
+			</form>
+		</div>
+	</ion-list>
   </div>
 
 </ion-content>

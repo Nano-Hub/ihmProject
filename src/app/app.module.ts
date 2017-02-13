@@ -10,6 +10,7 @@ import { ProfilPage } from '../pages/profil/profil';
 import { BonsPage } from '../pages/bons/bons';
 import { AdminPage } from '../pages/admin/admin';
 import { CouponPage } from '../pages/coupon/coupon';
+import { LoginService } from '../service/login-service';
 
 
 @NgModule({
@@ -41,6 +42,6 @@ import { CouponPage } from '../pages/coupon/coupon';
 	AdminPage,
 	CouponPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, LoginService]
 })
 export class AppModule {}
