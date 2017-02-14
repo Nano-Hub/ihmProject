@@ -83,10 +83,10 @@ export class AdminPage {
 	}else{
     var token = localStorage.getItem("token");
     //TODO DATA
-    let param = {"token": token, 'nom':token};
+    let param = {"token": token, 'nom':this.laBoutique.nom};
     this.http.post('http://localhost:3000/createStore', param).subscribe(
-    )
-    this.initializelesBoutiques();
+      data => this.navCtrl.setRoot(AdminPage)
+    );
 	}
 
 	console.log("bon bon bon");

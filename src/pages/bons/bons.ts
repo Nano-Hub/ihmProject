@@ -134,7 +134,10 @@ demander(){
   //TODO changer par nom magasin
   let param = {"token": token, "id_magasin": token};
   this.http.post('http://localhost:3000/askCoupon', param).subscribe(
-    data=>localStorage.removeItem("token")
+    data=>
+    {
+      localStorage.removeItem("token"),
+      this.navCtrl.setRoot(BonsPage)}
   );
 }
 
@@ -155,10 +158,8 @@ donner(value){
   var id_coupon = value.id_coupon;
   let param = {"id_coupon": id_coupon, "token": token};
   this.http.post('http://localhost:3000/addCouponFromUser', param).subscribe(
-  )
-  this.initializeMesCoupons();
-  this.initializeMesCouponsDemandes();
-  this.initializeMesCouponsProposes();
+    data=>this.navCtrl.setRoot(BonsPage)
+  );
 }
 
 recuperer(value){
@@ -167,10 +168,8 @@ recuperer(value){
   console.log(id_coupon);
   let param = {"id_coupon": id_coupon, "token": token};
   this.http.post('http://localhost:3000/stopGivingCoupon', param).subscribe(
-  )
-  this.initializeMesCoupons();
-  this.initializeMesCouponsDemandes();
-  this.initializeMesCouponsProposes();
+      data=>this.navCtrl.setRoot(BonsPage)
+  );
 }
 
 }
