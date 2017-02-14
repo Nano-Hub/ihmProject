@@ -44,11 +44,28 @@
 			<br>
 				<h5>Creer la boutique</h5>
 				<br>
-					<ion-item>
-						<ion-input type="text" placeholder="Nom de la Boutique" [(ngModel)]="laBoutique.nom" name="nom"></ion-input>
-					</ion-item>
+					<form (ngSubmit)="addBoutique()" #registerForm="ngForm">
+					  <ion-row>
+						<ion-col>
+						  <ion-list inset>
+							
+							<ion-item>
+								<ion-label>Nom de la Boutique:</ion-label>
+								<ion-input type="text" name="boutique" [(ngModel)]="nomBoutique" required></ion-input>
+							</ion-item>
+							
+						  </ion-list>
+						</ion-col>
+					  </ion-row>
+					  
+					  <ion-row>
+						<ion-col>
+						  <button ion-button type="submit" [disabled]="!registerForm.form.valid">Creer</button>
+						</ion-col>
+					  </ion-row>
+					  
+					</form>
 				<br>
-				<button ion-button (click)="addBoutique()" color="primary">Creer</button>
 		</ion-list>
 	  </div>
 </ion-content>
