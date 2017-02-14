@@ -18,10 +18,6 @@ export class AdminPage {
 	nomBoutique;
 
   constructor(public navCtrl: NavController, private http:Http) {
-	this.laBoutique={
-				"nom":'',
-				"code":''
-	};
 	 this.initializelesBoutiques();
   }
 

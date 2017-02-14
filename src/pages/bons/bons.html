@@ -64,14 +64,18 @@
 				<h5>Je souhaite un bon de :</h5>
 				<br>
 				<ion-list>
-
+					
 					<ion-item>
-						<ion-input type="text" placeholder="Nom de la Boutique" [(ngModel)]="leCoupon.boutique" name="coupcoup"></ion-input>
+						<ion-label>Choisir la boutique:</ion-label>
+						<ion-select [(ngModel)]="data" multiple="false">
+						  <ion-option *ngFor="let boutique of boutiquesList" [value] = "boutiqueChoisie">{{boutique.nom}}</ion-option>
+						</ion-select>
 					</ion-item>
 
 				</ion-list>
 				<br>
 				<button ion-button (click)="demander()" color="primary">Demander</button>
+				<br>
 			</div>
 			<br>
 			<br>

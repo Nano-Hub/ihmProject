@@ -35,7 +35,7 @@ export class LoginService {
             observer.next(true);
             observer.complete();
           },
-          (err) => console.log(err)
+          (err) =>console.log(err)
         );
       });
     }

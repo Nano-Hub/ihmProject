@@ -20,6 +20,9 @@ export class BonsPage {
   leCoupon;
   mesCouponsDemandes;
   mesCouponsProposes;
+  boutiquesList;
+  data: string ="";
+  boutiqueChoisie;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http) {
@@ -29,6 +32,13 @@ export class BonsPage {
     this.initializeMesCoupons();
     this.initializeMesCouponsDemandes();
     this.initializeMesCouponsProposes();
+	this.boutiquesList=[
+	{
+		"nom":'Chanel'
+	},
+	{
+		"nom":'Dior'
+	}];
   }
 
   initializeMesCoupons(){
@@ -65,16 +75,8 @@ initializeMesCouponsDemandes(){
     },
     (err) => console.log(err)
   );
-  /*  this.mesCouponsDemandes=[
-  {
-  "boutique":'Chanel'
-},
-{
-"boutique":'Dior'
-}];*/
-
 }
-
+ 
 initializeMesCouponsProposes(){
   let param = localStorage.getItem('token');
 
@@ -86,6 +88,7 @@ initializeMesCouponsProposes(){
     },
     (err) => console.log(err)
   );
+}
   /*this.mesCouponsProposes=[
   {
   "boutique":'BricoRama',
@@ -96,7 +99,6 @@ initializeMesCouponsProposes(){
 "reduction":'-12 €'
 }];*/
 
-}
 
 getMesCoupons(value) {
   // Reset items back to all of the items
@@ -131,7 +133,7 @@ getMesCouponsProposes(value) {
 demander(){
   this.mesCouponsDemandes.push(this.leCoupon);
   var token = localStorage.getItem("token");
-  //TODO changer par nom magasin
+  //TODO changer par nom magasin =>boutiqueChoise
   let param = {"token": token, "id_magasin": token};
   this.http.post('http://localhost:3000/askCoupon', param).subscribe(
     data=>localStorage.removeItem("token")
