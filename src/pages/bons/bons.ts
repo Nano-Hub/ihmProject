@@ -32,13 +32,17 @@ export class BonsPage {
     this.initializeMesCoupons();
     this.initializeMesCouponsDemandes();
     this.initializeMesCouponsProposes();
-	this.boutiquesList=[
+
+    this.http.get('http://localhost:3000/getPossibleAskedOffer').map((res:any) => res.json()).subscribe(
+      (data) => this.boutiquesList=data
+    );
+	/*this.boutiquesList=[
 	{
 		"nom":'Chanel'
 	},
 	{
 		"nom":'Dior'
-	}];
+	}];*/
   }
 
   initializeMesCoupons(){
@@ -76,7 +80,7 @@ initializeMesCouponsDemandes(){
     (err) => console.log(err)
   );
 }
- 
+
 initializeMesCouponsProposes(){
   let param = localStorage.getItem('token');
 
@@ -131,10 +135,8 @@ getMesCouponsProposes(value) {
 }
 
 demander(){
-  this.mesCouponsDemandes.push(this.leCoupon);
   var token = localStorage.getItem("token");
-  //TODO changer par nom magasin =>boutiqueChoise
-  let param = {"token": token, "id_magasin": token};
+  let param = {"token": token, "id_magasin": this.boutiqueChoisie};
   this.http.post('http://localhost:3000/askCoupon', param).subscribe(
     data=>
     {

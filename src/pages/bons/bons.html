@@ -64,11 +64,11 @@
 				<h5>Je souhaite un bon de :</h5>
 				<br>
 				<ion-list>
-					
+
 					<ion-item>
 						<ion-label>Choisir la boutique:</ion-label>
-						<ion-select [(ngModel)]="data" multiple="false">
-						  <ion-option *ngFor="let boutique of boutiquesList" [value] = "boutiqueChoisie">{{boutique.nom}}</ion-option>
+						<ion-select [(ngModel)]="boutiqueChoisie" multiple="false">
+						  <ion-option *ngFor="let boutique of boutiquesList" [value] = "boutique.id_magasin">{{boutique.nom}}</ion-option>
 						</ion-select>
 					</ion-item>
 
