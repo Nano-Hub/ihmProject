@@ -36,7 +36,7 @@ export class ConnexionPage {
 		if(this.typeUser=="user"){
 			this.navCtrl.setRoot(TabsPage);
 		}else if(this.typeUser=="admin"){
-			this.navCtrl.setRoot()
+			
 		}else{
 		}
         });

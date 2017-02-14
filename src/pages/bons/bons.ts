@@ -71,7 +71,7 @@ export class BonsPage {
 initializeMesCouponsDemandes(){
   let param = localStorage.getItem('token');
 
-  this.http.get('http://localhost:3000/getAllCouponsAskedByUser?token='+param).map((res:any) => res.json()).subscribe(
+  this.http.get('http://localhost:3000/getCouponsAskedByUser?token='+param).map((res:any) => res.json()).subscribe(
     (data) =>
     {
       console.log(data);
@@ -136,12 +136,10 @@ getMesCouponsProposes(value) {
 
 demander(){
   var token = localStorage.getItem("token");
-  let param = {"token": token, "id_magasin": this.boutiqueChoisie};
+  let param = {"token": token, "id_magasin": this.boutiqueChoisie}
   this.http.post('http://localhost:3000/askCoupon', param).subscribe(
     data=>
-    {
-      localStorage.removeItem("token"),
-      this.navCtrl.setRoot(BonsPage)}
+      this.navCtrl.setRoot(BonsPage)
   );
 }
 
@@ -153,11 +151,6 @@ use(value){
 }
 
 donner(value){
-  //console.log(value.boutique);
-  //this.mesCoupons = this.mesCoupons.splice(this.mesCoupons.indexOf(value), 1);
-  //console.log(value.boutique);
-  //this.mesCouponsProposes.push(value);
-  //TODO ID COUPON
   var token = localStorage.getItem("token");
   var id_coupon = value.id_coupon;
   let param = {"id_coupon": id_coupon, "token": token};

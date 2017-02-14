@@ -71,15 +71,26 @@ export class HomePage {
 }];*/
 }
 
+initializeCoupons(){
+
+  this.http.get('http://localhost:3000/getAllCouponsAskedByUser').map((res:any) => res.json()).subscribe(
+    (data) =>
+    {
+      console.log(data);
+      this.couponsStore=data;
+    },
+    (err) => console.log(err)
+  );
+}
+
 takeFromStore(value)
 {
   var token = localStorage.getItem("token");
   var id_coupon = value.id_coupon;
   let param = {"id_coupon": id_coupon, "token": token};
   this.http.post('http://localhost:3000/takeCoupon', param).subscribe(
-  )
-  this.initializeCouponsFromStore();
-  this.initializeCouponsFromUser();
+    data => this.navCtrl.setRoot(HomePage)
+  );
 }
 
 takeFromUser(value)
@@ -89,9 +100,8 @@ takeFromUser(value)
   var id_coupon = value.id_coupon;
   let param = {"id_coupon": id_coupon, "token": token};
   this.http.post('http://localhost:3000/takeCoupon', param).subscribe(
-  )
-  this.initializeCouponsFromStore();
-  this.initializeCouponsFromUser();
+    data => this.navCtrl.setRoot(HomePage)
+  );
 }
 
 getCouponsFromStore(value) {
@@ -112,6 +122,21 @@ getCouponsFromStore(value) {
 getCouponsFromUser(value) {
   // Reset items back to all of the items
   this.initializeCouponsFromUser();
+
+  // set val to the value of the ev target
+  var val = value.target.value;
+
+  // if the value is an empty string don't filter the items
+  if (val && val.trim() != '') {
+    this.couponsUser = this.couponsUser.filter((coupon) => {
+      return (coupon.nom.toLowerCase().indexOf(val.toLowerCase()) > -1);
+    })
+  }
+}
+
+getCoupons(value) {
+  // Reset items back to all of the items
+  this.initializeCoupons();
 
   // set val to the value of the ev target
   var val = value.target.value;
