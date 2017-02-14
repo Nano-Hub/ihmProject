@@ -36,6 +36,7 @@ export class ConnexionPage {
         this.navCtrl.setRoot(TabsPage)
         });
       } else {
+        console.log("oups oups");
         this.showError("Accès refusé !");
       }
     },

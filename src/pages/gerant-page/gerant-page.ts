@@ -24,7 +24,8 @@ export class GerantPagePage {
   }
 
   initializeNosCoupons(){
-    this.http.get('http://localhost:3000/getAllCouponsOurFromStore').map((res:any) => res.json()).subscribe(
+      let param = localStorage.getItem('token');
+    this.http.get('http://localhost:3000/getAllCouponsFromOurStore?token='+param).map((res:any) => res.json()).subscribe(
       (data) =>
       {
         console.log(data);
@@ -75,11 +76,8 @@ export class GerantPagePage {
   }
 
   public createBon(){
-	this.bon.nom='leNomdelaBoutiqueEnQuestion';
-	this.nosCoupons.push(this.bon);
   var token = localStorage.getItem("token");
-  //TODO get data reduction delai quantite=> this.bon
-  let param = {"token": token};
+  let param = {"token": token, "reduction":this.bon.reduction, "delai":this.bon.delai, "quantite":this.bon.quantite};
   this.http.post('http://localhost:3000/addCouponFromStore', param).subscribe(
   )
   this.initializeNosCoupons();
@@ -87,6 +85,9 @@ export class GerantPagePage {
 
 	deleteCoupon(coupon){
 		//delete le coupon
+    let param = localStorage.getItem('token');
+  this.http.delete('http://localhost:3000/deleteCouponFromStore?token='+param+'&id_coupon='+coupon.id_coupon).subscribe(
+  )
 	}
 
   ionViewDidLoad() {

@@ -130,6 +130,12 @@ getMesCouponsProposes(value) {
 
 demander(){
   this.mesCouponsDemandes.push(this.leCoupon);
+  var token = localStorage.getItem("token");
+  //TODO changer par nom magasin
+  let param = {"token": token, "id_magasin": token};
+  this.http.post('http://localhost:3000/askCoupon', param).subscribe(
+    data=>localStorage.removeItem("token")
+  );
 }
 
 use(value){
