@@ -20,6 +20,7 @@ export class ConnexionPage {
   createSuccess = false;
   userlogin = {login: '', mdp: ''};
   userRegister = {login: '', mdp: ''};
+  typeUser;
 
 
   constructor(private navCtrl: NavController, private service:LoginService, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private navParams: NavParams)
@@ -30,10 +31,14 @@ export class ConnexionPage {
     this.showLoading()
     this.service.connect(this.userlogin).subscribe(allowed => {
       if (allowed) {
-      console.log("if allowed");
         setTimeout(() => {
         this.loading.dismiss();
-        this.navCtrl.setRoot(TabsPage)
+		if(this.typeUser=="user"){
+			this.navCtrl.setRoot(TabsPage);
+		}else if(this.typeUser=="admin"){
+			this.navCtrl.setRoot()
+		}else{
+		}
         });
       } else {
         console.log("oups oups");
