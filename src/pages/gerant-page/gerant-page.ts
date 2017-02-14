@@ -24,7 +24,8 @@ export class GerantPagePage {
   }
 
   initializeNosCoupons(){
-    this.http.get('http://localhost:3000/getAllCouponsOurFromStore').map((res:any) => res.json()).subscribe(
+      let param = localStorage.getItem('token');
+    this.http.get('http://localhost:3000/getAllCouponsFromOurStore?token='+param).map((res:any) => res.json()).subscribe(
       (data) =>
       {
         console.log(data);
