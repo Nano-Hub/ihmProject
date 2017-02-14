@@ -81,8 +81,8 @@ export class AdminPage {
 		var token = localStorage.getItem("token");
 		let param = {"token": token, 'nom':this.nomBoutique};
 		this.http.post('http://localhost:3000/createStore', param).subscribe(
-		)
-		this.initializelesBoutiques();
+        data => this.navCtrl.setRoot(AdminPage)
+		);
 		}
 
 
