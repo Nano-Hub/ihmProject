@@ -108,7 +108,7 @@ getMesCoupons(value) {
   // if the value is an empty string don't filter the items
   if (val && val.trim() != '') {
     this.mesCoupons = this.mesCoupons.filter((coupon) => {
-      return (coupon.boutique.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      return (coupon.nom.toLowerCase().indexOf(val.toLowerCase()) > -1);
     })
   }
 }
@@ -123,7 +123,7 @@ getMesCouponsProposes(value) {
   // if the value is an empty string don't filter the items
   if (val && val.trim() != '') {
     this.mesCouponsProposes = this.mesCouponsProposes.filter((coupon) => {
-      return (coupon.boutique.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      return (coupon.nom.toLowerCase().indexOf(val.toLowerCase()) > -1);
     })
   }
 }

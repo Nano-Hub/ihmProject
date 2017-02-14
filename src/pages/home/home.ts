@@ -104,7 +104,7 @@ getCouponsFromStore(value) {
   // if the value is an empty string don't filter the items
   if (val && val.trim() != '') {
     this.couponsStore = this.couponsStore.filter((coupon) => {
-      return (coupon.boutique.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      return (coupon.nom.toLowerCase().indexOf(val.toLowerCase()) > -1);
     })
   }
 }
@@ -119,7 +119,7 @@ getCouponsFromUser(value) {
   // if the value is an empty string don't filter the items
   if (val && val.trim() != '') {
     this.couponsUser = this.couponsUser.filter((coupon) => {
-      return (coupon.boutique.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      return (coupon.nom.toLowerCase().indexOf(val.toLowerCase()) > -1);
     })
   }
 }

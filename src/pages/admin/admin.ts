@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 /*
   Generated class for the Admin page.
 
@@ -16,8 +16,8 @@ export class AdminPage {
 	admin: string = "magasins";
 	lesBoutiques;
 	laBoutique;
-	
-  constructor(public navCtrl: NavController) {
+
+  constructor(public navCtrl: NavController, private http:Http) {
 	this.laBoutique={
 				"nom":'',
 				"code":''
@@ -26,6 +26,13 @@ export class AdminPage {
   }
 
   initializelesBoutiques(){
+    this.http.get('http://localhost:3000/getAllStore').map((res:any) => res.json()).subscribe(
+      (data) =>
+      {
+        this.lesBoutiques=data;
+      },
+      (err) => console.log(err)
+    );/*
 	this.lesBoutiques=[
 	{
 		"nom":'Pimki',
@@ -46,10 +53,10 @@ export class AdminPage {
 	{
 		"nom":'Sephora',
 		"code":'UNEZF9'
-	}];
+	}];*/
   }
-  
-  
+
+
   /*ionViewDidLoad() {
     console.log('ionViewDidLoad AdminPage');
   }*/
@@ -68,18 +75,23 @@ export class AdminPage {
       })
     }
   }
-  
+
   addBoutique(){
-	  
+
 	if(this.laBoutique.nom === null || this.laBoutique.code === null){
 		return "veuillez entrer un nom de boutique et un code";
 	}else{
-		this.lesBoutiques.push(this.laBoutique);
+    var token = localStorage.getItem("token");
+    //TODO DATA
+    let param = {"token": token, 'nom':token};
+    this.http.post('http://localhost:3000/createStore', param).subscribe(
+    )
+    this.initializelesBoutiques();
 	}
-	
+
 	console.log("bon bon bon");
-	 
+
   }
-  
+
 
   }

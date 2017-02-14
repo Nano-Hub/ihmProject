@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 /*
   Generated class for the GerantPage page.
 
@@ -12,19 +12,27 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'gerant-page.html'
 })
 export class GerantPagePage {
-	
+
 	bonsGerant: string ="nosBons";
 	nosCoupons;
 	bon={nom:'',reduction:'',delai:'',quantite:''};
 	dateLimite;
 	quantiteLimite;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http) {
 	  this.initializeNosCoupons();
   }
-  
+
   initializeNosCoupons(){
-	this.nosCoupons=[
+    this.http.get('http://localhost:3000/getAllCouponsOurFromStore').map((res:any) => res.json()).subscribe(
+      (data) =>
+      {
+        console.log(data);
+        this.nosCoupons=data;
+      },
+      (err) => console.log(err)
+    );
+	/*this.nosCoupons=[
 	{
 		"nom":'Pimki',
 		"reduction":'-5 €',
@@ -48,9 +56,9 @@ export class GerantPagePage {
 		"reduction":'-10 €',
 		"delai":'',
 		"quantite":''
-	}];
+	}];*/
   }
-  
+
   getNosCoupons(value) {
     // Reset items back to all of the items
     this.initializeNosCoupons();
@@ -65,10 +73,16 @@ export class GerantPagePage {
       })
     }
   }
-  
+
   public createBon(){
 	this.bon.nom='leNomdelaBoutiqueEnQuestion';
 	this.nosCoupons.push(this.bon);
+  var token = localStorage.getItem("token");
+  //TODO get data reduction delai quantite
+  let param = {"token": token};
+  this.http.post('http://localhost:3000/addCouponFromStore', param).subscribe(
+  )
+  this.initializeNosCoupons();
 }
 
 	deleteCoupon(coupon){

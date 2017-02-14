@@ -29,14 +29,14 @@ export class LoginService {
       return Observable.create(observer => {
         let param = {"identifiant": authentification.login, "mot_de_passe": authentification.mdp};
         this.http.post('http://localhost:3000/login', param) .map((res:any) => res.json()).subscribe(
-                (data) =>
-                {
-                  localStorage.setItem('token',data.token);
-                  observer.next(true);
-                  observer.complete();
-                  },
-                (err) => console.log(err)
-                );
+          (data) =>
+          {
+            localStorage.setItem('token',data.token);
+            observer.next(true);
+            observer.complete();
+          },
+          (err) => console.log(err)
+        );
       });
     }
   }
@@ -45,8 +45,15 @@ export class LoginService {
       return Observable.throw("Veuillez entrer votre nom d'utilisateur et votre mot de passe");
     } else {
       return Observable.create(observer => {
-        observer.next(true);
-        observer.complete();
+        let param = {"identifiant": authentification.login, "mot_de_passe": authentification.mdp, 'code_magasin': authentification.mdp};
+        this.http.post('http://localhost:3000/register', param) .map((res:any) => res.json()).subscribe(
+          (data) =>
+          {
+            observer.next(true);
+            observer.complete();
+          },
+          (err) => console.log(err)
+        );
       });
     }
   }

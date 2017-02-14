@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
-
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 /*
   Generated class for the Profil page.
 
@@ -15,6 +15,23 @@ import { TabsPage } from '../tabs/tabs';
 export class ProfilPage {
 
 	tabProfil: string = "Profil";
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http:Http) {}
 
+  deconnecter()
+  {
+    console.log("appuie deco");
+    var token = localStorage.getItem("token");
+    let param = {"token": token};
+    this.http.post('http://localhost:3000/disconnect', param).subscribe(
+      data=>localStorage.removeItem("token")
+    );
+  }
+
+  supprimer()
+  {
+      let param = localStorage.getItem('token');
+    this.http.delete('http://localhost:3000/delete?token='+param).subscribe(
+      data=>localStorage.removeItem("token")
+    )
+  }
 }
