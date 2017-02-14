@@ -78,7 +78,7 @@ export class GerantPagePage {
 	this.bon.nom='leNomdelaBoutiqueEnQuestion';
 	this.nosCoupons.push(this.bon);
   var token = localStorage.getItem("token");
-  //TODO get data reduction delai quantite
+  //TODO get data reduction delai quantite=> this.bon
   let param = {"token": token};
   this.http.post('http://localhost:3000/addCouponFromStore', param).subscribe(
   )

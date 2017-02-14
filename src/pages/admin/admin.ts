@@ -78,7 +78,7 @@ export class AdminPage {
 
   addBoutique(){
 
-	if(this.laBoutique.nom === null || this.laBoutique.code === null){
+	if(this.laBoutique.nom === null){
 		return "veuillez entrer un nom de boutique et un code";
 	}else{
     var token = localStorage.getItem("token");
