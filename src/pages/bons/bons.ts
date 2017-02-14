@@ -32,13 +32,17 @@ export class BonsPage {
     this.initializeMesCoupons();
     this.initializeMesCouponsDemandes();
     this.initializeMesCouponsProposes();
-	this.boutiquesList=[
+
+    this.http.get('http://localhost:3000/getPossibleAskedOffer').map((res:any) => res.json()).subscribe(
+      (data) => this.boutiquesList=data
+    );
+	/*this.boutiquesList=[
 	{
 		"nom":'Chanel'
 	},
 	{
 		"nom":'Dior'
-	}];
+	}];*/
   }
 
   initializeMesCoupons(){
@@ -76,7 +80,7 @@ initializeMesCouponsDemandes(){
     (err) => console.log(err)
   );
 }
- 
+
 initializeMesCouponsProposes(){
   let param = localStorage.getItem('token');
 
@@ -131,12 +135,13 @@ getMesCouponsProposes(value) {
 }
 
 demander(){
-  this.mesCouponsDemandes.push(this.leCoupon);
   var token = localStorage.getItem("token");
-  //TODO changer par nom magasin =>boutiqueChoise
-  let param = {"token": token, "id_magasin": token};
+  let param = {"token": token, "id_magasin": this.boutiqueChoisie};
   this.http.post('http://localhost:3000/askCoupon', param).subscribe(
-    data=>localStorage.removeItem("token")
+    data=>
+    {
+      localStorage.removeItem("token"),
+      this.navCtrl.setRoot(BonsPage)}
   );
 }
 
@@ -157,10 +162,8 @@ donner(value){
   var id_coupon = value.id_coupon;
   let param = {"id_coupon": id_coupon, "token": token};
   this.http.post('http://localhost:3000/addCouponFromUser', param).subscribe(
-  )
-  this.initializeMesCoupons();
-  this.initializeMesCouponsDemandes();
-  this.initializeMesCouponsProposes();
+    data=>this.navCtrl.setRoot(BonsPage)
+  );
 }
 
 recuperer(value){
@@ -169,10 +172,8 @@ recuperer(value){
   console.log(id_coupon);
   let param = {"id_coupon": id_coupon, "token": token};
   this.http.post('http://localhost:3000/stopGivingCoupon', param).subscribe(
-  )
-  this.initializeMesCoupons();
-  this.initializeMesCouponsDemandes();
-  this.initializeMesCouponsProposes();
+      data=>this.navCtrl.setRoot(BonsPage)
+  );
 }
 
 }

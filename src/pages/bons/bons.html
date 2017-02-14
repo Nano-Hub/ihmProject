@@ -26,7 +26,7 @@
 			<ion-list>
 				<ion-item *ngFor="let coupon of mesCoupons">
 					<ion-thumbnail item-left>
-						<img src="assets/img/thumbnail-totoro.png">
+						<img src="{{coupon.image}}">
 					</ion-thumbnail>
 					<h2>{{ coupon.nom }}</h2>
 					<p>Reduction : {{ coupon.reduction }}</p>
@@ -64,11 +64,11 @@
 				<h5>Je souhaite un bon de :</h5>
 				<br>
 				<ion-list>
-					
+
 					<ion-item>
 						<ion-label>Choisir la boutique:</ion-label>
-						<ion-select [(ngModel)]="data" multiple="false">
-						  <ion-option *ngFor="let boutique of boutiquesList" [value] = "boutiqueChoisie">{{boutique.nom}}</ion-option>
+						<ion-select [(ngModel)]="boutiqueChoisie" multiple="false">
+						  <ion-option *ngFor="let boutique of boutiquesList" [value] = "boutique.id_magasin">{{boutique.nom}}</ion-option>
 						</ion-select>
 					</ion-item>
 
@@ -84,7 +84,7 @@
 				<ion-list>
 					<ion-item *ngFor="let couponD of mesCouponsDemandes">
 						<ion-thumbnail item-left>
-							<img src="assets/img/thumbnail-totoro.png">
+							<img src="{{coupon.image}}">
 						</ion-thumbnail>
 						<h2>{{ couponD.nom }}</h2>
 					</ion-item>
