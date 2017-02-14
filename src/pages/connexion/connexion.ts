@@ -3,7 +3,9 @@ import { NavController, NavParams,  AlertController, LoadingController, Loading 
 import { LoginService } from '../../service/login-service';
 import { HomePage } from '../home/home';
 import { TabsPage } from '../tabs/tabs';
-
+import { GerantPagePage } from '../gerant-page/gerant-page';
+import { AdminPage } from'../admin/admin';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 /*
   Generated class for the Connexion page.
 
@@ -23,7 +25,7 @@ export class ConnexionPage {
   typeUser;
 
 
-  constructor(private navCtrl: NavController, private service:LoginService, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private navParams: NavParams)
+  constructor(private navCtrl: NavController, private service:LoginService, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private navParams: NavParams,  private http: Http)
   {
   }
 
@@ -33,12 +35,18 @@ export class ConnexionPage {
       if (allowed) {
         setTimeout(() => {
         this.loading.dismiss();
-		if(this.typeUser=="user"){
-			this.navCtrl.setRoot(TabsPage);
-		}else if(this.typeUser=="admin"){
-			
-		}else{
-		}
+        let param = localStorage.getItem('token');
+
+        this.http.get('http://localhost:3000/getAllCouponsOfferedByUser?token='+param).map((res:any) => res.json()).subscribe(
+          (data) => this.typeUser=data.type
+        );
+        if(this.typeUser=="user"){
+    			this.navCtrl.setRoot(TabsPage);
+    		}else if(this.typeUser=="admin"){
+    			this.navCtrl.setRoot(AdminPage);
+    		}else{
+    			this.navCtrl.setRoot(GerantPagePage);
+    		}
         });
       } else {
         console.log("oups oups");

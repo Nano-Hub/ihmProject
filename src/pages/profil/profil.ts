@@ -15,7 +15,15 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 export class ProfilPage {
 
 	tabProfil: string = "Profil";
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http:Http) {}
+  personne;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http:Http)
+  {
+    let param = localStorage.getItem('token');
+
+    this.http.get('http://localhost:3000/getIdUser?token='+param).map((res:any) => res.json()).subscribe(
+      (data) => this.personne={"nom":data.id}
+    );
+  }
 
   deconnecter()
   {

@@ -17,9 +17,11 @@ Ionic pages and navigation.
 export class BonsPage {
   bons: string = "mesBons";
   mesCoupons;
+  mesCouponsMemoire;
   leCoupon;
   mesCouponsDemandes;
   mesCouponsProposes;
+  mesCouponsProposesMemoire;
   boutiquesList;
   data: string ="";
   boutiqueChoisie;
@@ -53,6 +55,7 @@ export class BonsPage {
       {
         console.log(data);
         this.mesCoupons=data;
+        this.mesCouponsMemoire=data;
       },
       (err) => console.log(err)
     );
@@ -89,6 +92,7 @@ initializeMesCouponsProposes(){
     {
       console.log(data);
       this.mesCouponsProposes=data;
+      this.mesCouponsProposesMemoire=data;
     },
     (err) => console.log(err)
   );
@@ -106,8 +110,7 @@ initializeMesCouponsProposes(){
 
 getMesCoupons(value) {
   // Reset items back to all of the items
-  this.initializeMesCoupons();
-
+   this.mesCoupons=this.mesCouponsMemoire;
   // set val to the value of the ev target
   var val = value.target.value;
 
@@ -121,7 +124,7 @@ getMesCoupons(value) {
 
 getMesCouponsProposes(value) {
   // Reset items back to all of the items
-  this.initializeMesCouponsProposes();
+  this.mesCouponsProposes=this.mesCouponsProposesMemoire;
 
   // set val to the value of the ev target
   var val = value.target.value;

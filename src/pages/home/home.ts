@@ -15,7 +15,11 @@ export class HomePage {
 
   marche: string = "offreCommerce";
   couponsUser;
+  couponsUserMemoire;
   couponsStore;
+  couponsStoreMemoire;
+  couponsAsk;
+  couponsAskMemoire;
   admin;
   connect;
   gerant;
@@ -25,15 +29,28 @@ export class HomePage {
     this.gerant=GerantPagePage;
     this.initializeCouponsFromStore();
     this.initializeCouponsFromUser();
+    this.initializeCouponsAsk();
   }
-
+  initializeCouponsAsk(){
+    let param = localStorage.getItem('token');
+    this.http.get('http://localhost:3000/getAllCouponsAskedByUser?token='+param).map((res:any) => res.json()).subscribe(
+      (data) =>
+      {
+        console.log(data);
+        this.couponsAsk=data;
+        this.couponsAskMemoire=data;
+      },
+      (err) => console.log(err)
+    );
+  }
   initializeCouponsFromUser(){
-
-    this.http.get('http://localhost:3000/getAllCouponsFromUser').map((res:any) => res.json()).subscribe(
+    let param = localStorage.getItem('token');
+    this.http.get('http://localhost:3000/getAllCouponsFromUser?token='+param).map((res:any) => res.json()).subscribe(
       (data) =>
       {
         console.log(data);
         this.couponsUser=data;
+        this.couponsUserMemoire=data;
       },
       (err) => console.log(err)
     );
@@ -45,6 +62,7 @@ export class HomePage {
       {
         console.log(data);
         this.couponsStore=data;
+        this.couponsStoreMemoire=data;
       },
       (err) => console.log(err)
     );
@@ -71,18 +89,6 @@ export class HomePage {
 }];*/
 }
 
-initializeCoupons(){
-
-  this.http.get('http://localhost:3000/getAllCouponsAskedByUser').map((res:any) => res.json()).subscribe(
-    (data) =>
-    {
-      console.log(data);
-      this.couponsStore=data;
-    },
-    (err) => console.log(err)
-  );
-}
-
 takeFromStore(value)
 {
   var token = localStorage.getItem("token");
@@ -106,7 +112,7 @@ takeFromUser(value)
 
 getCouponsFromStore(value) {
   // Reset items back to all of the items
-  this.initializeCouponsFromStore();
+    this.couponsStore=this.couponsStoreMemoire;
 
   // set val to the value of the ev target
   var val = value.target.value;
@@ -121,7 +127,7 @@ getCouponsFromStore(value) {
 
 getCouponsFromUser(value) {
   // Reset items back to all of the items
-  this.initializeCouponsFromUser();
+  this.couponsUser=this.couponsUserMemoire;
 
   // set val to the value of the ev target
   var val = value.target.value;
@@ -136,14 +142,14 @@ getCouponsFromUser(value) {
 
 getCoupons(value) {
   // Reset items back to all of the items
-  this.initializeCoupons();
+  this.couponsAsk=this.couponsAskMemoire;
 
   // set val to the value of the ev target
   var val = value.target.value;
 
   // if the value is an empty string don't filter the items
   if (val && val.trim() != '') {
-    this.couponsUser = this.couponsUser.filter((coupon) => {
+    this.couponsAsk = this.couponsAsk.filter((coupon) => {
       return (coupon.nom.toLowerCase().indexOf(val.toLowerCase()) > -1);
     })
   }
