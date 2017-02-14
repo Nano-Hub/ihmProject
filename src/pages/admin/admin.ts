@@ -15,7 +15,7 @@ export class AdminPage {
 
 	admin: string = "magasins";
 	lesBoutiques;
-	laBoutique;
+	nomBoutique;
 
   constructor(public navCtrl: NavController, private http:Http) {
 	this.laBoutique={
@@ -78,18 +78,15 @@ export class AdminPage {
 
   addBoutique(){
 
-	if(this.laBoutique.nom === null){
+	if(this.nomBoutique === null){
 		return "veuillez entrer un nom de boutique et un code";
 	}else{
-    var token = localStorage.getItem("token");
-    //TODO DATA
-    let param = {"token": token, 'nom':token};
-    this.http.post('http://localhost:3000/createStore', param).subscribe(
-    )
-    this.initializelesBoutiques();
-	}
-
-	console.log("bon bon bon");
+		var token = localStorage.getItem("token");
+		let param = {"token": token, 'nom':this.nomBoutique};
+		this.http.post('http://localhost:3000/createStore', param).subscribe(
+		)
+		this.initializelesBoutiques();
+		}
 
   }
 
