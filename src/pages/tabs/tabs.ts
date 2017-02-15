@@ -5,12 +5,14 @@ import { BonsPage } from '../bons/bons';
 import { ProfilPage } from '../profil/profil';
 import { GerantPagePage } from '../gerant-page/gerant-page';
 import { AdminPage } from '../admin/admin';
+import { NavController, NavParams,  AlertController, LoadingController, Loading } from 'ionic-angular';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 @Component({
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
-		
+
 	mesBons= BonsPage;
 	marche= HomePage;
 	profil= ProfilPage;
@@ -20,21 +22,22 @@ export class TabsPage {
 	bonCondition;
 	marcheCondition;
 	gerantCondition;
+  typeUser: string = '';
 
-  constructor() {
-	this.condition=false;
+
+  constructor(private navCtrl: NavController, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private navParams: NavParams,  private http: Http) {
 	let param = localStorage.getItem('token');
 
           this.http.get('http://localhost:3000/userType?token='+param).map((res:any) => res.json()).subscribe(
             (data) => {
-              this.typeUser= data.type;
+              this.typeUser=data.type;
+              console.log(this.typeUser);
               if(this.typeUser=="gerant")
               {
 				this.gerantCondition=true;
-                this.adminCondition=false;
+        this.adminCondition=false;
 				this.bonCondition=false;
 				this.marcheCondition=true;
-				
               }
               else if(this.typeUser=="admin")
               {
@@ -50,7 +53,7 @@ export class TabsPage {
 				this.bonCondition=true;
 				this.marcheCondition=true;
               }
-	  
+            }
     );
   }
 }

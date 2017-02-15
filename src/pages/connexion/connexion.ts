@@ -35,6 +35,7 @@ export class ConnexionPage {
     this.service.connect(this.userlogin).subscribe(allowed =>{
       if (allowed) {
         setTimeout(() => {
+           this.navCtrl.setRoot(TabsPage);
           this.loading.dismiss();
           /*let param = localStorage.getItem('token');
 
@@ -55,7 +56,7 @@ export class ConnexionPage {
               }
             }
           );*/
-		  this.navCtrl.setRoot(TabsPage);
+
         });
       } else {
         console.log("oups oups");
@@ -92,8 +93,10 @@ export class ConnexionPage {
       if (success) {
         this.createSuccess = true;
         this.showPopup("Succès", "Compte créer. Veuillez vous connecter");
+
       } else {
         this.showPopup("Erreur", "Il y a eu un problème.");
+        this.navCtrl.setRoot(ConnexionPage);
       }
     },
     error => {
@@ -110,7 +113,7 @@ export class ConnexionPage {
           text: 'OK',
           handler: data => {
             if (this.createSuccess) {
-              this.navCtrl.popToRoot();
+              this.navCtrl.setRoot(ConnexionPage);
             }
           }
         }

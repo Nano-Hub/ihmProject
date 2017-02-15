@@ -1,7 +1,7 @@
 <ion-tabs class="tabs-icon-text">
       <ion-tab tabIcon="basket" tabTitle="Mes Bons" *ngIf="bonCondition == true"[root]="mesBons"></ion-tab>
       <ion-tab tabIcon="cart" tabTitle="Marché" *ngIf="marcheCondition == true" [root]="marche"></ion-tab>
-	  <ion-tab tabIcon="star" tabTitle=Admin" *ngIf="adminCondition == true" [root]="admin"></ion-tab>
+	  <ion-tab tabIcon="star" tabTitle="Admin" *ngIf="adminCondition == true" [root]="admin"></ion-tab>
 	  <ion-tab tabIcon="star" tabTitle="Gerant" *ngIf="gerantCondition == true" [root]="gerant"></ion-tab>
 	  <ion-tab tabIcon="contact" tabTitle="Profil" [root]="profil"></ion-tab>
 </ion-tabs>

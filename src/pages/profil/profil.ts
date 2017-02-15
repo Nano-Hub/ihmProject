@@ -41,7 +41,8 @@ export class ProfilPage {
   {
       let param = localStorage.getItem('token');
     this.http.delete('http://localhost:3000/delete?token='+param).subscribe(
-      data=>localStorage.removeItem("token")
-    )
+      data=>{localStorage.removeItem("token");
+        this.navCtrl.setRoot(ConnexionPage)}
+    );
   }
 }

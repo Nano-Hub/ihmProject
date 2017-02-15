@@ -10,8 +10,8 @@ import { ConnexionPage } from '../pages/connexion/connexion';
   templateUrl: 'app.html'
 })
 export class MyApp {
-	
-  rootPage = TabsPage;
+
+  rootPage = ConnexionPage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {
