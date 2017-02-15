@@ -90,9 +90,9 @@ export class ConnexionPage {
     this.service.register(this.userRegister).subscribe(success => {
       if (success) {
         this.createSuccess = true;
-        this.showPopup("Success", "Account created. Veuillez vous connecter");
+        this.showPopup("Succès", "Compte créer. Veuillez vous connecter");
       } else {
-        this.showPopup("Error", "Problem creating account.");
+        this.showPopup("Erreur", "Il y a eu un problème.");
       }
     },
     error => {
