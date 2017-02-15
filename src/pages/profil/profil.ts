@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { ConnexionPage } from'../connexion/connexion';
 /*
   Generated class for the Profil page.
 
@@ -31,7 +32,8 @@ export class ProfilPage {
     var token = localStorage.getItem("token");
     let param = {"token": token};
     this.http.post('http://localhost:3000/disconnect', param).subscribe(
-      data=>localStorage.removeItem("token")
+      data=>{localStorage.removeItem("token");
+            this.navCtrl.setRoot(ConnexionPage)}
     );
   }
 
