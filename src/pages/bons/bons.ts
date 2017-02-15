@@ -81,7 +81,6 @@ initializeMesCouponsDemandes(){
     {
       console.log(data);
       this.mesCouponsDemandes=data;
-	  this.mesCouponsDemandesMemoire=data;
     },
     (err) => console.log(err)
   );
