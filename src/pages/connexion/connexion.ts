@@ -4,7 +4,8 @@ import { LoginService } from '../../service/login-service';
 import { HomePage } from '../home/home';
 import { TabsPage } from '../tabs/tabs';
 import { GerantPagePage } from '../gerant-page/gerant-page';
-import { AdminPage } from'../admin/admin';
+import { AdminPage } from '../admin/admin';
+
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 /*
   Generated class for the Connexion page.
