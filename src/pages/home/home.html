@@ -58,7 +58,7 @@
 		<ion-list *ngSwitchCase="'demandeParticulier'">
 			<ion-searchbar (ionInput)="getCoupons($event)"></ion-searchbar>
 			<ion-list>
-				<ion-item *ngFor="let coupon of coupons">
+				<ion-item *ngFor="let coupon of couponsAsk">
 					<ion-thumbnail item-left>
 						<img src="{{coupon.image}}">
 					</ion-thumbnail>

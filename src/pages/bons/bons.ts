@@ -17,10 +17,9 @@ Ionic pages and navigation.
 export class BonsPage {
   bons: string = "mesBons";
   mesCoupons;
-  mesCouponsMemoire;/***********************************************/
+  mesCouponsMemoire;
   leCoupon;
   mesCouponsDemandes;
-  mesCouponsDemandesMemoire;
   mesCouponsProposes;
   mesCouponsProposesMemoire;
   boutiquesList;
@@ -56,7 +55,9 @@ export class BonsPage {
       {
         console.log(data);
         this.mesCoupons=data;
-		this.mesCouponsMemoire=data;/***********************************************/
+
+		this.mesCouponsMemoire=data;
+
       },
       (err) => console.log(err)
     );
@@ -75,7 +76,7 @@ export class BonsPage {
 initializeMesCouponsDemandes(){
   let param = localStorage.getItem('token');
 
-  this.http.get('http://localhost:3000/getAllCouponsAskedByUser?token='+param).map((res:any) => res.json()).subscribe(
+  this.http.get('http://localhost:3000/getCouponsAskedByUser?token='+param).map((res:any) => res.json()).subscribe(
     (data) =>
     {
       console.log(data);
@@ -94,7 +95,7 @@ initializeMesCouponsProposes(){
     {
       console.log(data);
       this.mesCouponsProposes=data;
-	  this.mesCouponsProposesMemoire=data;
+      this.mesCouponsProposesMemoire=data;
     },
     (err) => console.log(err)
   );
@@ -112,8 +113,7 @@ initializeMesCouponsProposes(){
 
 getMesCoupons(value) {
   // Reset items back to all of the items
-  this.mesCoupons=this.mesCouponsMemoire;/***********************************************/
-
+   this.mesCoupons=this.mesCouponsMemoire;
   // set val to the value of the ev target
   var val = value.target.value;
 
@@ -127,7 +127,7 @@ getMesCoupons(value) {
 
 getMesCouponsProposes(value) {
   // Reset items back to all of the items
-  this.initializeMesCouponsProposes();
+  this.mesCouponsProposes=this.mesCouponsProposesMemoire;
 
   // set val to the value of the ev target
   var val = value.target.value;
@@ -142,12 +142,10 @@ getMesCouponsProposes(value) {
 
 demander(){
   var token = localStorage.getItem("token");
-  let param = {"token": token, "id_magasin": this.boutiqueChoisie};
+  let param = {"token": token, "id_magasin": this.boutiqueChoisie}
   this.http.post('http://localhost:3000/askCoupon', param).subscribe(
     data=>
-    {
-      localStorage.removeItem("token"),
-      this.navCtrl.setRoot(BonsPage)}
+      this.navCtrl.setRoot(BonsPage)
   );
 }
 
@@ -159,11 +157,6 @@ use(value){
 }
 
 donner(value){
-  //console.log(value.boutique);
-  //this.mesCoupons = this.mesCoupons.splice(this.mesCoupons.indexOf(value), 1);
-  //console.log(value.boutique);
-  //this.mesCouponsProposes.push(value);
-  //TODO ID COUPON
   var token = localStorage.getItem("token");
   var id_coupon = value.id_coupon;
   let param = {"id_coupon": id_coupon, "token": token};

@@ -16,9 +16,13 @@ export class ProfilPage {
 
 	tabProfil: string = "Profil";
 	personne;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http:Http) {
-	  //ICI FAUT INITIALISER CE PERSONNE AVEC TON API GENRE TU Y MET  LE USER DE FACON A CE QU'il y le nom
-	  this.personne={"nom":"JeanLouisDavid"}
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http:Http)
+  {
+    let param = localStorage.getItem('token');
+
+    this.http.get('http://localhost:3000/getIdUser?token='+param).map((res:any) => res.json()).subscribe(
+      (data) => this.personne={"nom":data.id}
+    );
   }
 
   deconnecter()
