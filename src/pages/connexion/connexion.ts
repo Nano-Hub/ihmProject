@@ -3,6 +3,8 @@ import { NavController, NavParams,  AlertController, LoadingController, Loading 
 import { LoginService } from '../../service/login-service';
 import { HomePage } from '../home/home';
 import { TabsPage } from '../tabs/tabs';
+import { GerantPagePage } from '../gerant-page/gerant-page';
+import { AdminPage } from'../admin/admin';
 
 /*
   Generated class for the Connexion page.
@@ -29,17 +31,21 @@ export class ConnexionPage {
 
   public login() {
     this.showLoading()
-    this.service.connect(this.userlogin).subscribe(allowed => {
-      if (allowed) {
+    this.service.connect(this.userlogin).subscribe(allowed =>{
+		if (allowed) {
         setTimeout(() => {
         this.loading.dismiss();
+		//faut initialiser avec ton api : this.typeUser 
+		
+		//ICI faudra mettre les bons niveaux possibles get par typeUser :*********************/
 		if(this.typeUser=="user"){
 			this.navCtrl.setRoot(TabsPage);
 		}else if(this.typeUser=="admin"){
-			this.navCtrl.setRoot()
+			this.navCtrl.setRoot(AdminPage);
 		}else{
+			this.navCtrl.setRoot(GerantPagePage);
 		}
-        });
+        });/************************************************************************************/
       } else {
         console.log("oups oups");
         this.showError("Accès refusé !");

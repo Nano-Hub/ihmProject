@@ -15,7 +15,11 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 export class ProfilPage {
 
 	tabProfil: string = "Profil";
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http:Http) {}
+	personne;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private http:Http) {
+	  //ICI FAUT INITIALISER CE PERSONNE AVEC TON API GENRE TU Y MET  LE USER DE FACON A CE QU'il y le nom
+	  this.personne={"nom":"JeanLouisDavid"}
+  }
 
   deconnecter()
   {
