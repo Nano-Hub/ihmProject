@@ -21,7 +21,6 @@
 
   <div [ngSwitch]="tabProfil">
     <ion-list *ngSwitchCase="'Profil'">
-		<!--Nom-->
       <p> Bonjour {{personne.nom}} </p>
       <button ion-button (click)="supprimer()">Supprimer mon compte</button>
       <button ion-button (click)="deconnecter()">Se déconnecter</button>
