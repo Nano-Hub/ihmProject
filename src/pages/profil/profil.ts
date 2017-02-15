@@ -22,7 +22,7 @@ export class ProfilPage {
     let param = localStorage.getItem('token');
 
     this.http.get('http://localhost:3000/getIdUser?token='+param).map((res:any) => res.json()).subscribe(
-      (data) => this.personne.nom=data.id
+      (data) => this.personne=data.id
         );
   }
 

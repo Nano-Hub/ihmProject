@@ -35,7 +35,7 @@ export class LoginService {
             observer.next(true);
             observer.complete();
           },
-          (err) =>console.log(err)
+          (err) => console.log(err)
         );
       });
     }
@@ -45,8 +45,8 @@ export class LoginService {
       return Observable.throw("Veuillez entrer votre nom d'utilisateur et votre mot de passe");
     } else {
       return Observable.create(observer => {
-        let param = {"identifiant": authentification.login, "mot_de_passe": authentification.mdp, 'code_magasin': authentification.mdp};
-        this.http.post('http://localhost:3000/register', param) .map((res:any) => res.json()).subscribe(
+        let param = {"identifiant": authentification.login, "mot_de_passe": authentification.mdp, 'code_magasin': authentification.code};
+        this.http.post('http://localhost:3000/register', param).subscribe(
           (data) =>
           {
             observer.next(true);
