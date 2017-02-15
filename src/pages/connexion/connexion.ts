@@ -36,7 +36,7 @@ export class ConnexionPage {
       if (allowed) {
         setTimeout(() => {
           this.loading.dismiss();
-          let param = localStorage.getItem('token');
+          /*let param = localStorage.getItem('token');
 
           this.http.get('http://localhost:3000/userType?token='+param).map((res:any) => res.json()).subscribe(
             (data) => {
@@ -54,7 +54,8 @@ export class ConnexionPage {
                 this.navCtrl.setRoot(TabsPage);
               }
             }
-          );
+          );*/
+		  this.navCtrl.setRoot(TabsPage);
         });
       } else {
         console.log("oups oups");
