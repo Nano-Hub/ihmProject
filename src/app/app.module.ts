@@ -1,8 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ConnexionPage } from '../pages/connexion/connexion';
@@ -18,8 +16,6 @@ import { GerantPagePage } from '../pages/gerant-page/gerant-page';
   declarations: [
     ConnexionPage,
     MyApp,
-    AboutPage,
-    ContactPage,
     HomePage,
     TabsPage,
     ProfilPage,
@@ -35,8 +31,6 @@ import { GerantPagePage } from '../pages/gerant-page/gerant-page';
   entryComponents: [
     ConnexionPage,
     MyApp,
-    AboutPage,
-    ContactPage,
     HomePage,
     TabsPage,
     BonsPage,

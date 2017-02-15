@@ -21,7 +21,7 @@ export class ConnexionPage {
   loading: Loading;
   createSuccess = false;
   userlogin = {login: '', mdp: ''};
-  userRegister = {login: '', mdp: ''};
+  userRegister = {login: '', mdp: '',code:''};
   typeUser;
 
 
