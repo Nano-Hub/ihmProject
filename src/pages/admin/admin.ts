@@ -15,6 +15,7 @@ export class AdminPage {
 
 	admin: string = "magasins";
 	lesBoutiques;
+	lesBoutiquesMemoire;
 	nomBoutique;
 
   constructor(public navCtrl: NavController, private http:Http) {
@@ -26,6 +27,7 @@ export class AdminPage {
       (data) =>
       {
         this.lesBoutiques=data;
+		this.lesBoutiquesMemoire=data;
       },
       (err) => console.log(err)
     );/*
@@ -59,7 +61,7 @@ export class AdminPage {
 
   getBoutique(value) {
     // Reset items back to all of the items
-    this.initializelesBoutiques();
+    this.lesBoutiques=this.lesBoutiquesMemoire;
 
     // set val to the value of the ev target
     var val = value.target.value;

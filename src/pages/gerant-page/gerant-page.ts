@@ -15,6 +15,7 @@ export class GerantPagePage {
 
 	bonsGerant: string ="nosBons";
 	nosCoupons;
+	nosCouponsMemoire;
 	bon={nom:'',reduction:'',delai:'',quantite:''};
 	dateLimite;
 	quantiteLimite;
@@ -30,6 +31,7 @@ export class GerantPagePage {
       {
         console.log(data);
         this.nosCoupons=data;
+		this.nosCouponsMemoire=data;
       },
       (err) => console.log(err)
     );
@@ -62,7 +64,7 @@ export class GerantPagePage {
 
   getNosCoupons(value) {
     // Reset items back to all of the items
-    this.initializeNosCoupons();
+    this.nosCoupons=this.nosCouponsMemoire;
 
     // set val to the value of the ev target
     var val = value.target.value;
